@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SpringMVCModel.dao.TestCMapper" >
+  <resultMap id="BaseResultMap" type="com.SpringMVCModel.po.TestC" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="customerName" property="customerName" jdbcType="VARCHAR" />
+    <result column="bankAccount" property="bankAccount" jdbcType="VARCHAR" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+   id,flag,money,customerName,bankAccount
+   </sql>
+   <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from testC
+    <where>
+    1=1
+		<if test="testCVo.id!=null">
+		and id = #{testCVo.id}
+		</if>
+		<if test="testCVo.id!=null and testCVo.id!=''">
+		<bind name="param_id" value="'%'+testCVo.id+'%'"/>
+		and id like #{param_id}
+		</if>
+		<if test="testCVo.flag!=null and testCVo.flag!=''">
+		<bind name="param_flag" value="'%'+testCVo.flag+'%'"/>
+		and flag like #{param_flag}
+		</if>
+		<if test="testCVo.money!=null and testCVo.money!=''">
+		<bind name="param_money" value="'%'+testCVo.money+'%'"/>
+		and money like #{param_money}
+		</if>
+		<if test="testCVo.customerName!=null and testCVo.customerName!=''">
+		<bind name="param_customerName" value="'%'+testCVo.customerName+'%'"/>
+		and customerName like #{param_customerName}
+		</if>
+		<if test="testCVo.bankAccount!=null and testCVo.bankAccount!=''">
+		<bind name="param_bankAccount" value="'%'+testCVo.bankAccount+'%'"/>
+		and bankAccount like #{param_bankAccount}
+		</if>
+	</where>
+		<if test="testCVo.pageSize>0">
+				limit #{testCVo.pageNum,jdbcType=INTEGER},#{testCVo.pageSize,jdbcType=INTEGER}
+		</if>
+  </select>
+  <select id="selectTestCCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+     count(*)
+    from testC
+    <where>
+    1=1
+		<if test="testCVo.id!=null">
+		and id = #{testCVo.id}
+		</if>
+		<if test="testCVo.id!=null and testCVo.id!=''">
+		<bind name="param_id" value="'%'+testCVo.id+'%'"/>
+		and id like #{param_id}
+		</if>
+		<if test="testCVo.flag!=null and testCVo.flag!=''">
+		<bind name="param_flag" value="'%'+testCVo.flag+'%'"/>
+		and flag like #{param_flag}
+		</if>
+		<if test="testCVo.money!=null and testCVo.money!=''">
+		<bind name="param_money" value="'%'+testCVo.money+'%'"/>
+		and money like #{param_money}
+		</if>
+		<if test="testCVo.customerName!=null and testCVo.customerName!=''">
+		<bind name="param_customerName" value="'%'+testCVo.customerName+'%'"/>
+		and customerName like #{param_customerName}
+		</if>
+		<if test="testCVo.bankAccount!=null and testCVo.bankAccount!=''">
+		<bind name="param_bankAccount" value="'%'+testCVo.bankAccount+'%'"/>
+		and bankAccount like #{param_bankAccount}
+		</if>
+	</where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from testC
+			where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from testC
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+   <insert id="insert" parameterType="com.SpringMVCModel.po.TestC" >
+    insert into testC (
+    id,flag,money,customerName,bankAccount
+      )
+    values (
+     #{id,jdbcType=INTEGER},#{flag,jdbcType=INTEGER},#{money,jdbcType=INTEGER},#{customerName,jdbcType=VARCHAR},#{bankAccount,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.SpringMVCModel.po.TestC" >
+    insert into testC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+      id,
+      </if>
+      <if test="flag != null" >
+      flag,
+      </if>
+      <if test="money != null" >
+      money,
+      </if>
+      <if test="customerName != null" >
+      customerName,
+      </if>
+      <if test="bankAccount != null" >
+      bankAccount
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+      #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+      #{money,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+      #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+      #{bankAccount,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="com.SpringMVCModel.po.TestC" >
+    update testC
+    <set >
+      <if test="id != null" >
+      id=#{id,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+      flag=#{flag,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+      money=#{money,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+      customerName=#{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+      bankAccount=#{bankAccount,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SpringMVCModel.po.TestC" >
+    update testC
+    set 
+      id=#{id,jdbcType=INTEGER},
+      flag=#{flag,jdbcType=INTEGER},
+      money=#{money,jdbcType=INTEGER},
+      customerName=#{customerName,jdbcType=VARCHAR},
+      bankAccount=#{bankAccount,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

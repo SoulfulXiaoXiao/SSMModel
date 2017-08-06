@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SpringMVCModel.dao.TestBMapper" >
+  <resultMap id="BaseResultMap" type="com.SpringMVCModel.po.TestB" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phoneNum" property="phoneNum" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="country" property="country" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+   userId,id,address,phoneNum,age,sex,province,city,country,flag
+   </sql>
+   <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from testB
+    <where>
+    1=1
+		<if test="testBVo.id!=null">
+		and id = #{testBVo.id}
+		</if>
+		<if test="testBVo.userId!=null and testBVo.userId!=''">
+		<bind name="param_userId" value="'%'+testBVo.userId+'%'"/>
+		and userId like #{param_userId}
+		</if>
+		<if test="testBVo.id!=null and testBVo.id!=''">
+		<bind name="param_id" value="'%'+testBVo.id+'%'"/>
+		and id like #{param_id}
+		</if>
+		<if test="testBVo.address!=null and testBVo.address!=''">
+		<bind name="param_address" value="'%'+testBVo.address+'%'"/>
+		and address like #{param_address}
+		</if>
+		<if test="testBVo.phoneNum!=null and testBVo.phoneNum!=''">
+		<bind name="param_phoneNum" value="'%'+testBVo.phoneNum+'%'"/>
+		and phoneNum like #{param_phoneNum}
+		</if>
+		<if test="testBVo.age!=null and testBVo.age!=''">
+		<bind name="param_age" value="'%'+testBVo.age+'%'"/>
+		and age like #{param_age}
+		</if>
+		<if test="testBVo.sex!=null and testBVo.sex!=''">
+		<bind name="param_sex" value="'%'+testBVo.sex+'%'"/>
+		and sex like #{param_sex}
+		</if>
+		<if test="testBVo.province!=null and testBVo.province!=''">
+		<bind name="param_province" value="'%'+testBVo.province+'%'"/>
+		and province like #{param_province}
+		</if>
+		<if test="testBVo.city!=null and testBVo.city!=''">
+		<bind name="param_city" value="'%'+testBVo.city+'%'"/>
+		and city like #{param_city}
+		</if>
+		<if test="testBVo.country!=null and testBVo.country!=''">
+		<bind name="param_country" value="'%'+testBVo.country+'%'"/>
+		and country like #{param_country}
+		</if>
+		<if test="testBVo.flag!=null and testBVo.flag!=''">
+		<bind name="param_flag" value="'%'+testBVo.flag+'%'"/>
+		and flag like #{param_flag}
+		</if>
+	</where>
+		<if test="testBVo.pageSize>0">
+				limit #{testBVo.pageNum,jdbcType=INTEGER},#{testBVo.pageSize,jdbcType=INTEGER}
+		</if>
+  </select>
+  <select id="selectTestBCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+     count(*)
+    from testB
+    <where>
+    1=1
+		<if test="testBVo.id!=null">
+		and id = #{testBVo.id}
+		</if>
+		<if test="testBVo.userId!=null and testBVo.userId!=''">
+		<bind name="param_userId" value="'%'+testBVo.userId+'%'"/>
+		and userId like #{param_userId}
+		</if>
+		<if test="testBVo.id!=null and testBVo.id!=''">
+		<bind name="param_id" value="'%'+testBVo.id+'%'"/>
+		and id like #{param_id}
+		</if>
+		<if test="testBVo.address!=null and testBVo.address!=''">
+		<bind name="param_address" value="'%'+testBVo.address+'%'"/>
+		and address like #{param_address}
+		</if>
+		<if test="testBVo.phoneNum!=null and testBVo.phoneNum!=''">
+		<bind name="param_phoneNum" value="'%'+testBVo.phoneNum+'%'"/>
+		and phoneNum like #{param_phoneNum}
+		</if>
+		<if test="testBVo.age!=null and testBVo.age!=''">
+		<bind name="param_age" value="'%'+testBVo.age+'%'"/>
+		and age like #{param_age}
+		</if>
+		<if test="testBVo.sex!=null and testBVo.sex!=''">
+		<bind name="param_sex" value="'%'+testBVo.sex+'%'"/>
+		and sex like #{param_sex}
+		</if>
+		<if test="testBVo.province!=null and testBVo.province!=''">
+		<bind name="param_province" value="'%'+testBVo.province+'%'"/>
+		and province like #{param_province}
+		</if>
+		<if test="testBVo.city!=null and testBVo.city!=''">
+		<bind name="param_city" value="'%'+testBVo.city+'%'"/>
+		and city like #{param_city}
+		</if>
+		<if test="testBVo.country!=null and testBVo.country!=''">
+		<bind name="param_country" value="'%'+testBVo.country+'%'"/>
+		and country like #{param_country}
+		</if>
+		<if test="testBVo.flag!=null and testBVo.flag!=''">
+		<bind name="param_flag" value="'%'+testBVo.flag+'%'"/>
+		and flag like #{param_flag}
+		</if>
+	</where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from testB
+			where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from testB
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+   <insert id="insert" parameterType="com.SpringMVCModel.po.TestB" >
+    insert into testB (
+    userId,id,address,phoneNum,age,sex,province,city,country,flag
+      )
+    values (
+     #{userId,jdbcType=INTEGER},#{id,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{phoneNum,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{sex,jdbcType=INTEGER},#{province,jdbcType=INTEGER},#{city,jdbcType=INTEGER},#{country,jdbcType=INTEGER},#{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.SpringMVCModel.po.TestB" >
+    insert into testB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+      userId,
+      </if>
+      <if test="id != null" >
+      id,
+      </if>
+      <if test="address != null" >
+      address,
+      </if>
+      <if test="phoneNum != null" >
+      phoneNum,
+      </if>
+      <if test="age != null" >
+      age,
+      </if>
+      <if test="sex != null" >
+      sex,
+      </if>
+      <if test="province != null" >
+      province,
+      </if>
+      <if test="city != null" >
+      city,
+      </if>
+      <if test="country != null" >
+      country,
+      </if>
+      <if test="flag != null" >
+      flag
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+      #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+      #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+      #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+      #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+      #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+      #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+      #{city,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+      #{country,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+      #{flag,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="com.SpringMVCModel.po.TestB" >
+    update testB
+    <set >
+      <if test="userId != null" >
+      userId=#{userId,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+      id=#{id,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+      address=#{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+      phoneNum=#{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+      age=#{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+      sex=#{sex,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+      province=#{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+      city=#{city,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+      country=#{country,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+      flag=#{flag,jdbcType=INTEGER}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SpringMVCModel.po.TestB" >
+    update testB
+    set 
+      userId=#{userId,jdbcType=INTEGER},
+      id=#{id,jdbcType=INTEGER},
+      address=#{address,jdbcType=VARCHAR},
+      phoneNum=#{phoneNum,jdbcType=VARCHAR},
+      age=#{age,jdbcType=INTEGER},
+      sex=#{sex,jdbcType=INTEGER},
+      province=#{province,jdbcType=INTEGER},
+      city=#{city,jdbcType=INTEGER},
+      country=#{country,jdbcType=INTEGER},
+      flag=#{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
